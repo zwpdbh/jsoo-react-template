@@ -1,0 +1,56 @@
+opam-version: "2.0"
+name: "jsoo-react-template"
+version: "~dev"
+synopsis: "Project template for jsoo-react"
+description: "Template for a minimal jsoo-react project"
+maintainer: ["davesnx" "jchavarri"]
+authors: ["davesnx" "jchavarri"]
+license: "MIT"
+homepage: "https://github.com/ml-in-barcelona/jsoo-react-template"
+bug-reports: "https://github.com/ml-in-barcelona/jsoo-react-template/issues"
+depends: [
+  "base-bigarray" {= "base"}
+  "base-threads" {= "base"}
+  "base-unix" {= "base"}
+  "cmdliner" {= "1.1.1"}
+  "cppo" {= "1.6.9"}
+  "dune" {= "3.0.3"}
+  "gen_js_api" {= "1.1.2"}
+  "js_of_ocaml" {= "4.0.0"}
+  "js_of_ocaml-compiler" {= "4.0.0"}
+  "jsoo-react" {= "0.1"}
+  "menhir" {= "20220210"}
+  "menhirLib" {= "20220210"}
+  "menhirSdk" {= "20220210"}
+  "ocaml" {= "4.14.0"}
+  "ocaml-base-compiler" {= "4.14.0"}
+  "ocaml-compiler-libs" {= "v0.12.4"}
+  "ocaml-config" {= "2"}
+  "ocaml-options-vanilla" {= "1"}
+  "ocamlbuild" {= "0.14.2"}
+  "ojs" {= "1.1.2"}
+  "ppx_derivers" {= "1.2.1"}
+  "ppxlib" {= "0.29.1"}
+  "seq" {= "base"}
+  "sexplib0" {= "v0.15.1"}
+  "stdlib-shims" {= "0.3.0"}
+  "uchar" {= "0.0.2"}
+  "yojson" {= "2.0.2"}
+]
+build: [
+  ["dune" "subst"] {dev}
+  [
+    "dune"
+    "build"
+    "-p"
+    name
+    "-j"
+    jobs
+    "--promote-install-files=false"
+    "@install"
+    "@runtest" {with-test}
+    "@doc" {with-doc}
+  ]
+  ["dune" "install" "-p" name "--create-install-files" name]
+]
+dev-repo: "git+https://github.com/ml-in-barcelona/jsoo-react-template.git"
